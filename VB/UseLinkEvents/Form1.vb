@@ -13,9 +13,9 @@ Namespace UseLinkEvents
 
         ' Define background and foreground colors. 
 
-        Private backColor_Renamed As Color = Color.LightGreen
+        Private _backColor As Color = Color.LightGreen
 
-        Private foreColor_Renamed As Color = Color.Green
+        Private _foreColor As Color = Color.Green
 
         ' Create the Marginal Header section. 
         Private Sub link1_CreateMarginalHeaderArea(ByVal sender As Object, ByVal e As DevExpress.XtraPrinting.CreateAreaEventArgs) Handles link1.CreateMarginalHeaderArea
@@ -27,7 +27,7 @@ Namespace UseLinkEvents
             Dim format As String = "Page {0} of {1}"
 
             ' Set the rectangle for a page info brick. 
-            Dim r As New RectangleF(0, 0, 0, e.Graph.Font.Height)
+            Dim r As New RectangleF(0, 0, 0, CType(e.Graph.Font, Font).Height)
 
             ' Draw a page info brick, which displays page numbers. 
             Dim brick As PageInfoBrick = e.Graph.DrawPageInfo(PageInfo.NumberOfTotal, format, Color.Black, r, BorderSide.None)
@@ -55,8 +55,8 @@ Namespace UseLinkEvents
             e.Graph.StringFormat = New BrickStringFormat(StringAlignment.Center, StringAlignment.Center)
 
             ' Set background and foreground colors to predefined values. 
-            e.Graph.BackColor = backColor_Renamed
-            e.Graph.ForeColor = foreColor_Renamed
+            e.Graph.BackColor = _backColor
+            e.Graph.ForeColor = _foreColor
 
             ' Draw 3 bricks containing "I love you". 
             e.Graph.DrawString("I", New Rectangle(0, 0, 150, 25))
@@ -112,10 +112,10 @@ Namespace UseLinkEvents
         ' Create the Marginal Footer section. 
         Private Sub link1_CreateDetailFooterArea(ByVal sender As Object, ByVal e As DevExpress.XtraPrinting.CreateAreaEventArgs) Handles link1.CreateDetailFooterArea
             ' Set the background color to Coral. 
-            backColor_Renamed = Color.Coral
+            _backColor = Color.Coral
 
             ' Set the foreground color to White. 
-            foreColor_Renamed = Color.White
+            _foreColor = Color.White
 
             ' Add the detail header data to the detail footer section. 
             link1_CreateDetailHeaderArea(sender, e)

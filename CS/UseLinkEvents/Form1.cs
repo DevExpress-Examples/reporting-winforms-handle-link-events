@@ -23,7 +23,7 @@ namespace UseLinkEvents {
             string format = "Page {0} of {1}";
 
             // Set the rectangle for a page info brick. 
-            RectangleF r = new RectangleF(0, 0, 0, e.Graph.Font.Height);
+            RectangleF r = new RectangleF(0, 0, 0, ((Font)e.Graph.Font).Height);
 
             // Draw a page info brick, which displays page numbers. 
             PageInfoBrick brick = e.Graph.DrawPageInfo(PageInfo.NumberOfTotal, format, Color.Black,
